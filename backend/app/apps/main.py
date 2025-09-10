@@ -30,7 +30,7 @@ def send_message():
         if message.sender == "user":
             time.sleep(1)  # simulate processing delay
             return jsonify({
-                "text": "This is a swayam message from my fucking backend",
+                "text": "Generating pdf of comic.",
                 "sender": "bot"
             })
         else:
