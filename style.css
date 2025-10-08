@@ -1,0 +1,93 @@
+/* General body styling */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Container where the effect will happen */
+.container {
+    position: relative;
+    width: 80%; /* Adjust this width for the center container */
+    height: 50%; /* Adjust the height as needed */
+    overflow: hidden;
+}
+
+/* Sword Cut Animation */
+.slice {
+    position: absolute;
+    top: 50%;
+    left: -100%;
+    width: 5px; /* Narrow sword cut */
+    height: 100%; /* Full height of container */
+    background: linear-gradient(to right, transparent, #fff, transparent); /* Sword cut appearance */
+    z-index: 2;
+    opacity: 0;
+    animation: sliceAnimation 2s ease forwards;
+}
+
+/* Sparkle Effect */
+.sparkles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0;
+    animation: sparkleAnimation 2s forwards;
+}
+
+.sparkles div {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffd700, #ffcc00); /* Golden color */
+    animation: sparkle 1.5s infinite ease-in-out;
+}
+
+/* Text Styling - no box around the text */
+.text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    opacity: 0;
+    z-index: 4;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    animation: showText 1s 2.5s forwards;
+}
+
+/* Keyframes for animations */
+@keyframes sliceAnimation {
+    0% { left: -100%; opacity: 0; }
+    50% { left: 0; opacity: 1; }
+    100% { left: 100%; opacity: 0; }
+}
+
+@keyframes sparkleAnimation {
+    0% { opacity: 0; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes sparkle {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.5); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes showText {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
