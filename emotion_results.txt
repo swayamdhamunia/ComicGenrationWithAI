@@ -1,0 +1,9 @@
+File: input.txt
+  anger: 0.0011
+  disgust: 0.0050
+  fear: 0.0008
+  joy: 0.9636
+  neutral: 0.0082
+  sadness: 0.0188
+  surprise: 0.0024
+
