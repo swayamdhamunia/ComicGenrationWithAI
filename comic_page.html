@@ -1,57 +1,4 @@
-def generate_comic_page():
-    """
-    generate_comic_page()
-
-    Generates a stylish 6-panel anime-themed comic HTML page and layout XML
-    using all images from ./res (or RES_DIR below).
-    """
-
-    import os
-    import random
-    from pathlib import Path
-    from xml.etree.ElementTree import Element, SubElement, ElementTree
-
-    # ---------------- CONFIG ----------------
-    RES_DIR = Path(r"C:\Users\Lenovo\OneDrive\Desktop\Shruti\New folder\ComicGenrationWithAI\res")
-    OUTPUT_HTML = Path("comic_page.html")
-    OUTPUT_XML = Path("layout.xml")
-    RNG_SEED = 42
-    CAPTIONS = {}
-    # -----------------------------------------
-
-    random.seed(RNG_SEED)
-
-    # Gather images
-    if not RES_DIR.exists() or not RES_DIR.is_dir():
-        raise SystemExit(f"Folder '{RES_DIR}' not found. Create it and add images.")
-
-    images = sorted([p for p in RES_DIR.iterdir() if p.suffix.lower() in ('.png', '.jpg', '.jpeg', '.gif', '.webp')])
-    if not images:
-        raise SystemExit(f"No supported images found in '{RES_DIR}'.")
-
-    # Only use first 6 images (as requested)
-    images = images[:6]
-
-    # Panels metadata
-    panels = []
-    for i, img in enumerate(images):
-        panels.append({
-            "id": f"panel{i+1}",
-            "src": str(img).replace("\\", "/"),
-            "caption": CAPTIONS.get(img.name, "")
-        })
-
-    # Generate XML
-    root = Element("comic")
-    for p in panels:
-        pe = SubElement(root, "panel", attrib={"id": p["id"]})
-        SubElement(pe, "src").text = p["src"]
-        SubElement(pe, "caption").text = p["caption"]
-    ElementTree(root).write(OUTPUT_XML, encoding="utf-8", xml_declaration=True)
-    print(f"XML layout saved: {OUTPUT_XML}")
-
-    # HTML + CSS
-    html_start = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -151,20 +98,37 @@ header {
 <body>
 <header>✨ Anime Adventures ✨</header>
 <main class="comic-page">
-"""
 
-    html_panels = ""
-    for p in panels:
-        tilt = random.choice([-2, -1, 0, 1, 2])
-        cap_html = f'<div class="caption">{p["caption"]}</div>' if p["caption"] else ""
-        html_panels += f"""
-<div class="panel" style="--tilt: {tilt};" id="{p['id']}">
-  <img src="{p['src']}" alt="{p['id']}" loading="lazy">
-  {cap_html}
+<div class="panel" style="--tilt: -2;" id="panel1">
+  <img src="C:/Users/Lenovo/OneDrive/Desktop/Shruti/New folder/ComicGenrationWithAI/res/comic_image.png" alt="panel1" loading="lazy">
+  
 </div>
-"""
 
-    html_end = """
+<div class="panel" style="--tilt: -2;" id="panel2">
+  <img src="C:/Users/Lenovo/OneDrive/Desktop/Shruti/New folder/ComicGenrationWithAI/res/comic_image5.png" alt="panel2" loading="lazy">
+  
+</div>
+
+<div class="panel" style="--tilt: 0;" id="panel3">
+  <img src="C:/Users/Lenovo/OneDrive/Desktop/Shruti/New folder/ComicGenrationWithAI/res/comic_scene_1.png" alt="panel3" loading="lazy">
+  
+</div>
+
+<div class="panel" style="--tilt: -1;" id="panel4">
+  <img src="C:/Users/Lenovo/OneDrive/Desktop/Shruti/New folder/ComicGenrationWithAI/res/comic_scene_2.png" alt="panel4" loading="lazy">
+  
+</div>
+
+<div class="panel" style="--tilt: -1;" id="panel5">
+  <img src="C:/Users/Lenovo/OneDrive/Desktop/Shruti/New folder/ComicGenrationWithAI/res/comic_scene_3.png" alt="panel5" loading="lazy">
+  
+</div>
+
+<div class="panel" style="--tilt: -1;" id="panel6">
+  <img src="C:/Users/Lenovo/OneDrive/Desktop/Shruti/New folder/ComicGenrationWithAI/res/comic_scene_4.png" alt="panel6" loading="lazy">
+  
+</div>
+
 </main>
 <div id="lightbox">
   <img id="lightboxImg" src="">
@@ -189,9 +153,3 @@ document.addEventListener('click', function(e){
 </script>
 </body>
 </html>
-"""
-
-    OUTPUT_HTML.write_text(html_start + html_panels + html_end, encoding="utf-8")
-    print(f"HTML page saved: {OUTPUT_HTML}")
-    print(" Open comic_page.html in your browser to view your anime-style comic!")
-

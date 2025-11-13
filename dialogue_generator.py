@@ -48,7 +48,7 @@ Example format:
 Scene 1, A sunny park with soft golden light, Alex, "I feel the breeze today!", A young man in casual clothes, smiling confidently.
 Scene 2, A sunny park with soft golden light,near a cafe, Mia, "This coffee smells amazing.", A cheerful woman with short hair, wearing a yellow jacket.
 
-Now generate 6 such scenes below based on the input.
+Now generate 6 such scenes below based on the input and ensure to provide output as CSV like format and dont put any text under colons"".
 
 
 Text:

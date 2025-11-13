@@ -1,6 +1,7 @@
 from diffusers import StableDiffusionPipeline
 import torch
 import pandas as pd
+from comic_maker import generate_comic_page
 
 # Load the Stable Diffusion model once
 pipe = StableDiffusionPipeline.from_pretrained(
@@ -52,7 +53,9 @@ def generate_comic_images(csv_path: str):
         print(f" Saved {filename}")
         print(f"Prompt: {prompt}\n")
 
-        print(" All comic scenes generated successfully!")
+    print(" All comic scenes generated successfully!")
+    generate_comic_page()
+
 
 
 # Example usage:
