@@ -3,7 +3,7 @@ import time
 import os
 from werkzeug.utils import secure_filename
 from datetime import datetime
-from apps import pip_init
+from . import pip_init
 # Create Blueprint
 message_blueprint = Blueprint('messages', __name__)
 

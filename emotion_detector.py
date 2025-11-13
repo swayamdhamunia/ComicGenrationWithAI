@@ -2,6 +2,7 @@
 
 from transformers import pipeline
 import os
+from dialogue_generator import generate_comic_csv
 
 # Load Hugging Face emotion detection pipeline
 emotion_pipeline = pipeline(
@@ -63,6 +64,7 @@ if __name__ == "__main__":
     folder = os.path.dirname(os.path.abspath(__file__))
 
     input_file = os.path.join(folder, "input.txt")
-    output_file = os.path.join(folder, "emotion_results.py")
+    output_file = os.path.join(folder, "emotion_results.txt")
 
     analyze_file(input_file, output_file)
+    generate_comic_csv("input.txt", "emotion_results.txt", "script.csv")
