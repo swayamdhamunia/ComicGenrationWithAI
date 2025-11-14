@@ -29,7 +29,7 @@ def generate_comic_csv(input_file: str, emotion_file: str, output_csv: str):
 You are a creative comic writer. Based on the following text and detected emotions,
 generate exactly 6 comic scenes in a structured CSV-like format with the following columns:
 
-Scene, Background, Character, Dialogues, Character's Information
+Scene, Background, Dialogues, Character's Information
 
 Guidelines:
 - Each scene should have a short, clear description of the background and setting.
@@ -37,7 +37,7 @@ Guidelines:
   as in a continuous comic storyline (e.g., if the first scene is a sunny park, 
   the next might shift subtly to a nearby café or the same park in the evening).
 - Include color tones, lighting, and small environmental details (like "soft golden light", "rustling leaves").
-- Each scene must include at least one character with a short dialogue (1–2 lines).
+- Each scene must include at least one character with a short dialogue (1 line and concise).
 - Include brief character information (appearance, attire, or emotional expression).
 - Keep the tone and expressions aligned with the detected emotions.
 - Do not add any extra explanations, markdown, or commentary.
@@ -45,8 +45,8 @@ Guidelines:
 -Provide full background details like scene, light and every necessary details to ensure that if needed , the same background is generated again,dont use (the same....) for backgrounds, provide full again .Only if needed else new background.
 
 Example format:
-Scene 1, A sunny park with soft golden light, Alex, "I feel the breeze today!", A young man in casual clothes, smiling confidently.
-Scene 2, A sunny park with soft golden light,near a cafe, Mia, "This coffee smells amazing.", A cheerful woman with short hair, wearing a yellow jacket.
+Scene 1, A sunny park with soft golden light, "I feel the breeze today!", A young man in casual clothes smiling confidently.
+Scene 2, A sunny park with soft golden light,near a cafe, "This coffee smells amazing.", A cheerful woman with short hair wearing a yellow jacket.
 
 Now generate 6 such scenes below based on the input and ensure to provide output as CSV like format and dont put any text under colons"".
 

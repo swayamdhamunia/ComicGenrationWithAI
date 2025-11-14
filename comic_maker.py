@@ -12,7 +12,7 @@ def generate_comic_page():
     from xml.etree.ElementTree import Element, SubElement, ElementTree
 
     # ---------------- CONFIG ----------------
-    RES_DIR = Path(r"C:\Users\Lenovo\OneDrive\Desktop\Shruti\New folder\ComicGenrationWithAI\res")
+    RES_DIR = Path(r"C:\Users\Lenovo\OneDrive\Desktop\Shruti\New folder\ComicGenrationWithAI\Graphics_with_dialogue")
     OUTPUT_HTML = Path("comic_page.html")
     OUTPUT_XML = Path("layout.xml")
     RNG_SEED = 42
@@ -194,4 +194,5 @@ document.addEventListener('click', function(e){
     OUTPUT_HTML.write_text(html_start + html_panels + html_end, encoding="utf-8")
     print(f"HTML page saved: {OUTPUT_HTML}")
     print(" Open comic_page.html in your browser to view your anime-style comic!")
+
 

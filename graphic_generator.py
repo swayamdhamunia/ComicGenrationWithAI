@@ -2,6 +2,7 @@ from diffusers import StableDiffusionPipeline
 import torch
 import pandas as pd
 from comic_maker import generate_comic_page
+from dialogue_adder import add_caption_to_6_images
 
 # Load the Stable Diffusion model once
 pipe = StableDiffusionPipeline.from_pretrained(
@@ -44,19 +45,24 @@ def generate_comic_images(csv_path: str):
         )
 
         # Generate the image
-        image = pipe(prompt).images[0]
+        # image = pipe(prompt).images[0]
         
         # Save image with sequential numbering
         filename = f"comic_scene_{i+1}.png"
-        image.save(filename)
+        # image.save(filename)
 
         print(f" Saved {filename}")
         print(f"Prompt: {prompt}\n")
 
     print(" All comic scenes generated successfully!")
-    generate_comic_page()
+    add_caption_to_6_images(
+        res_folder="res",
+    script_file="script.csv",
+    output_folder="Graphics_with_dialogue",
+    font_path="comic.ttf",
+    font_size=40,
+    max_width=25
+    )
 
 
 
-# Example usage:
-# generate_comic_images("script.csv")
