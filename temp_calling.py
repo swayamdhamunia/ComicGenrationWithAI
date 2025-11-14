@@ -1,0 +1,3 @@
+from emotion_detector import run_emotion_analysis
+
+run_emotion_analysis()
