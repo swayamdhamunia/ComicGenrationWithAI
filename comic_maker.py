@@ -58,93 +58,109 @@ def generate_comic_page():
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Anime Comic</title>
 <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@400;700&family=Luckiest+Guy&display=swap" rel="stylesheet">
+
 <style>
 body {
     margin: 0;
-    background: radial-gradient(circle at top left, #1b0034, #090016 70%);
-    background-attachment: fixed;
+    background: linear-gradient(180deg, #130024, #080012 60%, #000008);
     font-family: 'Roboto', sans-serif;
-    overflow-x: hidden;
     color: #fff;
+    overflow-x: hidden;
 }
 
+/* Title */
 header {
     font-family: 'Luckiest Guy', cursive;
-    font-size: 58px;
+    font-size: 54px;
     color: #ff3df0;
     text-align: center;
-    text-shadow: 3px 3px 0 #000, 0 0 15px #ff9dff, 0 0 30px #ff47f5;
-    padding: 25px 10px;
-    background: linear-gradient(180deg, #2c0059, #1b0034);
-    border-bottom: 6px solid #ff3df0;
-    letter-spacing: 2px;
+    padding: 28px 10px;
+    letter-spacing: 3px;
+    background: linear-gradient(180deg, #2c0059, #190030);
+    border-bottom: 4px solid #ff3df0;
+    text-shadow: 
+        3px 3px 0 #000, 
+        0 0 20px #ff6aff,
+        0 0 40px #ff3df0;
 }
 
+/* More Vertical Layout */
 .comic-page {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 22px;
-    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    padding: 35px 18px 50px;
+    max-width: 850px;
+    margin: auto;
 }
 
+/* Panels redesigned - cleaner borders + depth */
 .panel {
-    background: linear-gradient(135deg, #2b004a, #120027);
-    border: 5px solid #ff47f5;
-    border-radius: 10px;
-    padding: 6px;
-    box-shadow: 0 0 25px rgba(255, 71, 245, 0.4), 8px 8px 0 rgba(0,0,0,0.5);
-    transform: rotate(calc(var(--tilt) * 1deg));
-    transition: all 0.3s ease;
+    background: #150026;
+    border: 4px solid #ff47f5;
+    border-radius: 14px;
+    padding: 10px;
+    box-shadow: 
+        0 0 25px rgba(255, 70, 245, 0.45),
+        0 0 5px rgba(255, 70, 245, 0.7) inset;
+    transform: rotate(calc(var(--tilt) * 0.7deg));
+    transition: all 0.35s ease;
     position: relative;
     overflow: hidden;
 }
+
+/* Hover pop-out */
 .panel:hover {
-    transform: rotate(0deg) scale(1.05);
-    box-shadow: 0 0 35px rgba(255, 71, 245, 0.8);
+    transform: rotate(0deg) scale(1.04);
+    box-shadow: 
+        0 0 35px rgba(255, 70, 245, 0.85),
+        0 0 8px rgba(255, 70, 245, 1) inset;
     z-index: 3;
 }
+
+/* Comic Image */
 .panel img {
     width: 100%;
-    height: auto;
+    border-radius: 10px;
     object-fit: contain;
-    display: block;
-    background: #000;
+    box-shadow: 0 0 18px rgba(255, 71, 245, 0.4);
     border: 3px solid #ff47f5;
-    border-radius: 8px;
-    filter: contrast(1.15) saturate(1.3);
 }
 
+/* Caption bubble */
 .caption {
     font-family: 'Bangers', cursive;
-    background: rgba(255, 255, 255, 0.12);
-    border: 2px solid #ff47f5;
-    border-radius: 6px;
-    padding: 6px 12px;
     position: absolute;
-    bottom: 12px;
-    left: 12px;
+    bottom: 14px;
+    left: 14px;
+    max-width: 85%;
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 2px solid #ff47f5;
+    border-radius: 10px;
     font-size: 20px;
-    color: #ffecff;
+    color: #ffe3ff;
     text-shadow: 2px 2px 0 #000;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 0 12px rgba(255, 71, 245, 0.6);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 15px rgba(255, 70, 245, 0.7);
 }
 
+/* Lightbox */
 #lightbox {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(10, 0, 20, 0.95);
+    background: rgba(5, 0, 10, 0.95);
     align-items: center;
     justify-content: center;
     z-index: 9999;
 }
 #lightbox img {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 92%;
+    max-height: 92%;
     border: 6px solid #ff47f5;
-    border-radius: 10px;
-    box-shadow: 0 0 40px rgba(255, 71, 245, 0.8);
+    border-radius: 14px;
+    box-shadow: 0 0 55px rgba(255, 71, 245, 0.9);
 }
 </style>
 </head>
@@ -152,6 +168,7 @@ header {
 <header>✨ Anime Adventures ✨</header>
 <main class="comic-page">
 """
+
 
     html_panels = ""
     for p in panels:
@@ -166,9 +183,11 @@ header {
 
     html_end = """
 </main>
+
 <div id="lightbox">
   <img id="lightboxImg" src="">
 </div>
+
 <script>
 document.addEventListener('click', function(e){
   const panel = e.target.closest('.panel');
@@ -187,9 +206,11 @@ document.addEventListener('click', function(e){
   }
 });
 </script>
+
 </body>
 </html>
 """
+
 
     OUTPUT_HTML.write_text(html_start + html_panels + html_end, encoding="utf-8")
     print(f"HTML page saved: {OUTPUT_HTML}")

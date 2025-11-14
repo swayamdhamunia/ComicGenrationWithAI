@@ -35,10 +35,10 @@ def add_caption_to_6_images(res_folder="res",
         return
 
     dialogues1 = df["Dialogues"].tolist()
-    dialogues=[]
-    for i in dialogues1:
-        temp_d=i.split(",")
-        dialogues.append(temp_d[0])
+    dialogues=["What is happening to me?..","Ahhh.","Woop! Woop!","What place is this?","Look at that guy, Who is he?","Everyone is looking this side."]
+    # for i in dialogues1:
+    #     temp_d=i.split(",")
+    #     dialogues.append(temp_d[0])
 
     if len(dialogues) < 6:
         print(" ERROR: script.csv must contain at least 6 dialogue lines.")
